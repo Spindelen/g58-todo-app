@@ -39,5 +39,16 @@ public class Person {
     private LocalDate createdAt;
 
     // TODO : Equals & Hashcode
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(email, person.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(email);
+    }
     // TODO : Life Cycle for createdAt;
 }
