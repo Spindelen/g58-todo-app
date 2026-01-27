@@ -36,6 +36,17 @@ public class Todo {
     private LocalDateTime updatedAt;
     private LocalDateTime dueDate;
 
+    @PrePersist
+    public void prePersist() {
+        this.updatedAt = LocalDateTime.now();
+        this.dueDate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
     @ManyToOne
     private Person assignedTo;
 
