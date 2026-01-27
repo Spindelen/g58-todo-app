@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 @Getter
@@ -37,6 +38,7 @@ public class Person {
 
     @Column(nullable = false, updatable = false)
     private LocalDate createdAt;
+
 
     // TODO : Equals & Hashcode
     @Override

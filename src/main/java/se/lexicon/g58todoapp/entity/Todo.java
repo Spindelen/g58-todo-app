@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -31,16 +32,17 @@ public class Todo {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-
-    // TODO: make sure to create/update this info. AUDITING? - Life Cycle methods
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @Column(nullable = false)
     private LocalDateTime dueDate;
 
+    // TODO: make sure to create/update this info. AUDITING? - Life Cycle methods
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
-        this.dueDate = LocalDateTime.now();
     }
 
     @PreUpdate
@@ -52,7 +54,8 @@ public class Todo {
     private Person assignedTo;
 
     //TODO ATTACHMENT
-
+    @OneToMany(mappedBy = "todo")
+    private Set<Attachment> attachments;
 
     // TODO Add one more Constructor, Title, description
 
