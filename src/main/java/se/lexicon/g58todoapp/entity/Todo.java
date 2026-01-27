@@ -60,6 +60,13 @@ public class Todo {
 
     // TODO Add one more Constructor, Title, description
 
+    protected Todo(){}
+
+    public Todo(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     public Todo(String title, String description, LocalDateTime dueDate) {
         this.title = title;
         this.description = description;
