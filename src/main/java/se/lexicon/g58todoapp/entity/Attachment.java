@@ -34,6 +34,12 @@ public class Attachment {
     @JoinColumn(name = "todo_id")
     private Todo todo;
 
+    public Attachment(@NonNull String fileName, @NonNull String fileType, byte[] data) {
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.data = data;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
