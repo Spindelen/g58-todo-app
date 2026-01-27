@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
-    // TODO: Find person with a email :Done
+    // TODO: Find person with a email :>>DONE
     List<Person> findByEmail(String email);
-    // TODO: Is there a person with a specific email? - return boolean ;Done
+    // TODO: Is there a person with a specific email? - return boolean ;>>DONE
     boolean existsByEmail(String email);
 
 }

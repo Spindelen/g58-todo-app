@@ -6,7 +6,7 @@ import lombok.*;
 
 import java.util.Objects;
 
-// TODO IMPLEMENT: DONE
+// TODO IMPLEMENT: >>DONE
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

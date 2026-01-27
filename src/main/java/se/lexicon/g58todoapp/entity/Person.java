@@ -40,7 +40,7 @@ public class Person {
     private LocalDate createdAt;
 
 
-    // TODO : Equals & Hashcode DONE
+    // TODO : Equals & Hashcode >>DONE
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -52,7 +52,7 @@ public class Person {
     public int hashCode() {
         return Objects.hashCode(email);
     }
-    // TODO : Life Cycle for createdAt; DONE
+    // TODO : Life Cycle for createdAt; >>DONE
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDate.now();
