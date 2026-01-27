@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -54,8 +55,8 @@ public class Todo {
     private Person assignedTo;
 
     //TODO ATTACHMENT
-    @OneToMany(mappedBy = "todo")
-    private Set<Attachment> attachments;
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL)
+    private Set<Attachment> attachments =new HashSet<>();
 
     // TODO Add one more Constructor, Title, description
 
