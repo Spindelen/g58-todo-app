@@ -40,7 +40,7 @@ public class Todo {
     @Column(nullable = false)
     private LocalDateTime dueDate;
 
-    // TODO: make sure to create/update this info. AUDITING? - Life Cycle methods; >>DONE
+    // TODO: make sure to create/update this info. AUDITING? - Life Cycle methods; >>DONE<<
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
@@ -55,11 +55,11 @@ public class Todo {
     @ManyToOne
     private Person assignedTo;
 
-    //TODO ATTACHMENT >>DONE
+    //TODO ATTACHMENT >>DONE<<
     @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL)
     private Set<Attachment> attachments =new HashSet<>();
 
-    // TODO Add one more Constructor, Title, description; >>DONE
+    // TODO Add one more Constructor, Title, description; >>DONE<<
 
     //protected Todo(){}
 
@@ -88,7 +88,7 @@ public class Todo {
         this.assignedTo = assignedTo;
     }
 
-    // TODO : Equals & Hashcode: >>DONE
+    // TODO : Equals & Hashcode: >>DONE<<
 
     @Override
     public boolean equals(Object o) {
