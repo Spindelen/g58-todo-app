@@ -38,7 +38,7 @@ public class Attachment {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Attachment that = (Attachment) o;
-        return id == that.id;
+        return id != 0 && id == that.id;
     }
 
     @Override
