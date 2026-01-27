@@ -38,6 +38,7 @@ public class Todo {
 
     @PrePersist
     public void prePersist() {
+        this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
         this.dueDate = LocalDateTime.now();
     }
