@@ -51,4 +51,10 @@ public class Person {
         return Objects.hashCode(email);
     }
     // TODO : Life Cycle for createdAt;
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDate.now();
+    }
+
+
 }
