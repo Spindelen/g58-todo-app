@@ -58,7 +58,7 @@ public class Todo {
     @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL)
     private Set<Attachment> attachments =new HashSet<>();
 
-    // TODO Add one more Constructor, Title, description
+    // TODO Add one more Constructor, Title, description; DONE
 
     protected Todo(){}
 
