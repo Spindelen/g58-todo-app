@@ -4,7 +4,9 @@ package se.lexicon.g58todoapp.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-// TODO IMPLEMENT
+import java.util.Objects;
+
+// TODO IMPLEMENT: DONE
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
