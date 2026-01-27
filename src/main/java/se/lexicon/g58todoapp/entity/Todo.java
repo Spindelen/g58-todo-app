@@ -54,7 +54,7 @@ public class Todo {
     @ManyToOne
     private Person assignedTo;
 
-    //TODO ATTACHMENT
+    //TODO ATTACHMENT DONE
     @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL)
     private Set<Attachment> attachments =new HashSet<>();
 
