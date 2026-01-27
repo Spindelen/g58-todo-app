@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Setter
@@ -60,7 +61,7 @@ public class Todo {
 
     // TODO Add one more Constructor, Title, description; DONE
 
-    protected Todo(){}
+    //protected Todo(){}
 
     public Todo(String title, String description) {
         this.title = title;
