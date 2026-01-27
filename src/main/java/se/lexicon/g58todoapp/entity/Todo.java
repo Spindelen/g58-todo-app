@@ -87,7 +87,7 @@ public class Todo {
         this.assignedTo = assignedTo;
     }
 
-    // TODO : Equals & Hashcode
+    // TODO : Equals & Hashcode: DONE
 
     @Override
     public boolean equals(Object o) {
