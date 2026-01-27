@@ -33,4 +33,16 @@ public class Attachment {
     @ManyToOne
     @JoinColumn(name = "todo_id")
     private Todo todo;
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Attachment that = (Attachment) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
