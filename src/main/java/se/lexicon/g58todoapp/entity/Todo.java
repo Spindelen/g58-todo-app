@@ -39,7 +39,7 @@ public class Todo {
     @Column(nullable = false)
     private LocalDateTime dueDate;
 
-    // TODO: make sure to create/update this info. AUDITING? - Life Cycle methods
+    // TODO: make sure to create/update this info. AUDITING? - Life Cycle methods; DONE
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
