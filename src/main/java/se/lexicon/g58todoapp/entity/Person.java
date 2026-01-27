@@ -40,7 +40,7 @@ public class Person {
     private LocalDate createdAt;
 
 
-    // TODO : Equals & Hashcode
+    // TODO : Equals & Hashcode DONE
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
