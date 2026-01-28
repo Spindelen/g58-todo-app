@@ -15,6 +15,7 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
     // TODO : Tasks assigned to a specific Person >>DONE<<
 
     List<Todo> findByAssignedTo(Person person);
+    List<Todo> findByTitleContainingIgnoreCase(String title);
 
     // TODO : 📌 Count all tasks assigned to a person >>DONE<<
 
