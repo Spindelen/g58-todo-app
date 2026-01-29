@@ -3,6 +3,7 @@ package se.lexicon.g58todoapp.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.proxy.HibernateProxy;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -39,24 +40,33 @@ public class Person {
     @Column(nullable = false, updatable = false)
     private LocalDate createdAt;
 
+    public Person(@NonNull String name, @NonNull String email) {
+        this.name = name;
+        this.email = email;
+    }
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDate.now();
+    }
 
     // TODO : Equals & Hashcode >>DONE<<
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) return false;
         Person person = (Person) o;
-        return Objects.equals(email, person.email);
+        return getId() != null && Objects.equals(getId(), person.getId());
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(email);
+    public final int hashCode() {
+        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
     // TODO : Life Cycle for createdAt; >>>DONE<<
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDate.now();
-    }
+
 
 
 }

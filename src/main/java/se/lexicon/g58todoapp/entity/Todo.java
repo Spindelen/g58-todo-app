@@ -2,6 +2,7 @@ package se.lexicon.g58todoapp.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.proxy.HibernateProxy;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -34,23 +35,12 @@ public class Todo {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    @Column(nullable = false)
     private LocalDateTime dueDate;
 
     // TODO: make sure to create/update this info. AUDITING? - Life Cycle methods; >>DONE<<
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
 
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
 
     @ManyToOne
     private Person assignedTo;
@@ -59,9 +49,8 @@ public class Todo {
     @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL)
     private Set<Attachment> attachments =new HashSet<>();
 
-    // TODO Add one more Constructor, Title, description; >>DONE<<
 
-    //protected Todo(){}
+    // TODO Add one more Constructor, Title, description; >>DONE<<
 
     public Todo(String title, String description) {
         this.title = title;
@@ -87,18 +76,43 @@ public class Todo {
         this.dueDate = dueDate;
         this.assignedTo = assignedTo;
     }
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+    // helper methods for managing attachments
+    public void addAttachment(Attachment attachment) {
+        if (attachments == null) {
+            attachments = new HashSet<>();
+        }
+        attachments.add(attachment);
+        attachment.setTodo(this); // sync back-reference
+    }
 
+    public void removeAttachment(Attachment attachment) {
+        attachments.remove(attachment);
+        attachment.setTodo(null); // disconnect both ways
+    }
     // TODO : Equals & Hashcode: >>DONE<<
 
+
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) return false;
         Todo todo = (Todo) o;
-        return Objects.equals(id, todo.id);
+        return getId() != null && Objects.equals(getId(), todo.getId());
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+    public final int hashCode() {
+        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
 }

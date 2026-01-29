@@ -13,6 +13,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @ToString
 @Entity
+@Table(name = "attachments")
 public class Attachment {
 
     @Id
@@ -29,17 +30,27 @@ public class Attachment {
     @Column(nullable = false, length = 100)
     private String fileType;
 
-    @Column(nullable = false)
+    @Lob
+    // 1KB = 1024 bytes
+    // 1MB = 1024 X 1024 = 1048576 bytes
+    // 10MB = 1048576 X10 = 10485760 bytes
     private byte[] data;
 
-    @ManyToOne
-    @JoinColumn(name = "todo_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "todo_id", nullable = false)
     private Todo todo;
 
     public Attachment(@NonNull String fileName, @NonNull String fileType, byte[] data) {
         this.fileName = fileName;
         this.fileType = fileType;
         this.data = data;
+    }
+
+    public void setTodo(Todo todo) {
+        this.todo = todo;
+
+        if (todo != null)
+        todo.getAttachments().add(this);
     }
 
     @Override
