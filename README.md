@@ -32,7 +32,7 @@ classDiagram
         - LocalDate updatedAt
         - LocalDate dueDate
         - Person assignedTo
-        - Set<Attachment> attachments
+        - Set~Attachment~ attachments
         
         + Task(title, description, dueDate)
         + Task(title, description, dueDate, assignedTo)
@@ -40,16 +40,17 @@ classDiagram
     }
 
     class Attachment {
-        Long id
-        String fileName
-        String fileType
-        byte[] data
+        - Long id
+        - String fileName
+        - String fileType
+        - byte[] data
+        - Todo todo
     }
     
     
     %% Relationships
     Person "0..1" --> "0..*" Todo : assignedToATask  - ManyToOne
-    Todo "0..1" --> "0..*" Attachment : hasAttachments - OneToMany
+    Todo "0..1" <--> "0..*" Attachment : hasAttachments - OneToMany
 
 
 

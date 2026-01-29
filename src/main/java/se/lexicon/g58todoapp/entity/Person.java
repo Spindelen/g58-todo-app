@@ -44,12 +44,12 @@ public class Person {
         this.name = name;
         this.email = email;
     }
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDate.now();
     }
 
-    // TODO : Equals & Hashcode >>DONE<<
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
@@ -65,8 +65,4 @@ public class Person {
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
-    // TODO : Life Cycle for createdAt; >>>DONE<<
-
-
-
 }

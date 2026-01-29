@@ -39,18 +39,11 @@ public class Todo {
 
     private LocalDateTime dueDate;
 
-    // TODO: make sure to create/update this info. AUDITING? - Life Cycle methods; >>DONE<<
-
-
     @ManyToOne
     private Person assignedTo;
 
-    //TODO ATTACHMENT >>DONE<<
-    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL)
-    private Set<Attachment> attachments =new HashSet<>();
-
-
-    // TODO Add one more Constructor, Title, description; >>DONE<<
+    @OneToMany(mappedBy = "todo" , cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true )
+    private Set<Attachment> attachments = new HashSet<>();
 
     public Todo(String title, String description) {
         this.title = title;
@@ -76,14 +69,19 @@ public class Todo {
         this.dueDate = dueDate;
         this.assignedTo = assignedTo;
     }
+
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
+
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
+
+
     // helper methods for managing attachments
     public void addAttachment(Attachment attachment) {
         if (attachments == null) {
@@ -97,8 +95,6 @@ public class Todo {
         attachments.remove(attachment);
         attachment.setTodo(null); // disconnect both ways
     }
-    // TODO : Equals & Hashcode: >>DONE<<
-
 
     @Override
     public final boolean equals(Object o) {
@@ -115,4 +111,5 @@ public class Todo {
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
+
 }
