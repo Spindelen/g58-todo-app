@@ -6,6 +6,7 @@ import se.lexicon.g58todoapp.entity.Todo;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
 
