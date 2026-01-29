@@ -25,7 +25,7 @@ public class DataInitializer {
     CommandLineRunner run(PersonRepository personRepository, TodoRepository todoRepository, AttachmentRepository attachmentRepository, PersonService personService){
         return args -> {
 
-           // registerPerson(personService);
+             registerPerson(personService);
 
 //            seedingData(personRepository, todoRepository);
 
@@ -35,7 +35,7 @@ public class DataInitializer {
 
     // TODO: See if you can get a email service to work?
     private static void registerPerson(PersonService personService) {
-        personService.createPerson(new Person("Simon", "Actual_Address_Here@lexicon.se"));
+        personService.createPerson(new Person("Erik", "erik@manboy.se"));
     }
 
 
