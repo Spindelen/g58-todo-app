@@ -53,25 +53,48 @@ class PersonRepositoryTest {
 
     }
 
-    //TODO - Students
+    //TODO - Students >>>DONE<<<
     @Test
     @DisplayName("Exists by email should return true")
     void testExistsByEmail() {
+        //Arrange
+        Person person = new Person("Erik", "erik@manboy.se");
+        personRepository.save(person);
 
-        assertTrue(false);
+        //Act
+        boolean emailExist = personRepository.existsByEmail("erik@manboy.se");
+
+        //Assert
+        assertTrue(emailExist);
     }
 
-    //TODO - Students
+    //TODO - Students   >>>DONE<<<
     @Test
     @DisplayName("Exists by email should return false for unknown email")
     void testExistsByEmailFalse() {
-        assertTrue(false);
-    }
+        //Arrange
+        Person person = new Person("Erik", "erik@manboy.se");
+        personRepository.save(person);
 
+        //Act
+        boolean emailExist = personRepository.existsByEmail("erikk@manboy.se");
+
+        assertFalse(emailExist);
+    }
+    //TODO - TEST   >>>DONE<<
     @Test
     @DisplayName("Delete a person by email and verify existence")
     void testDeletePersonByEmail() {
-        assertTrue(false);
+        //Arrange
+        Person person = new Person("Erik", "erikk@manboy.se");
+        personRepository.save(person);
+        //Act
+        personRepository.deleteByEmail("erikk@manboy.se");
+
+        //Assert
+        boolean emailExist = personRepository.existsByEmail("erikk@manboy.se");
+
+        assertFalse(emailExist);
 
     }
 
