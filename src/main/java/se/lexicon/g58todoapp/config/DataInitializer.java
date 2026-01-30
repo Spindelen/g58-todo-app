@@ -25,7 +25,7 @@ public class DataInitializer {
     CommandLineRunner run(PersonRepository personRepository, TodoRepository todoRepository, AttachmentRepository attachmentRepository, PersonService personService){
         return args -> {
 
-            // registerPerson(personService);
+             registerPerson(personService);
 
             seedingData(personRepository, todoRepository);
 

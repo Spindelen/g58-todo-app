@@ -57,10 +57,25 @@ public class PersonService {
     }
 
     // TODO: Update + Test?
+    public Person Update(Long id, Person updated){
+        Person personUpdate = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("Person not found"));
+        personUpdate.setName(updated.getName());
+        personUpdate.setEmail(updated.getEmail());
+        personUpdate.setBirthDate(updated.getBirthDate());
+        System.out.println("Updating person with id: " + id);
+        return personRepository.save(personUpdate);
+    }
 
     // TODO: Delete person by id + Test?
+    public void deleteById(Long id){
+        Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("Person not found"));
+        personRepository.delete(person);
+    }
 
     // TODO: find by email + Test?
+    public Person findByEmail(String email){
+        return personRepository.findByEmail(email).orElseThrow(() -> new PersonNotFoundException("Person not found"));
+    }
 
 
 }

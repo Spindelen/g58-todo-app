@@ -36,7 +36,7 @@ class PersonServiceTest {
 
     private final Long TEST_ID = 1L;
     private final String TEST_NAME = "Simon Elbrink";
-    private final String TEST_EMAIL = "Simon.elbrink@lexicon.se";
+    private final String TEST_EMAIL = "erik@manboy.se";
 
     @BeforeEach
     void setUp() {
@@ -47,7 +47,7 @@ class PersonServiceTest {
     @Test
     void findAll() {
         //Arrange
-        Person person2 = new Person( "Mehrdad Javan", "mehrdad.javan@lexicon.se");
+        Person person2 = new Person( "Mehrdad Javan", "erik@manboy.se");
         List<Person> list= Arrays.asList(person, person2);
         when(personRepository.findAll()).thenReturn(list); // if this method is called give this response ^ ( Mocking Data)
 
