@@ -45,6 +45,8 @@ public class DataInitializer {
         Person dev1 = personRepository.save(new Person("Dev1", "dev1@test.se"));
         Person dev2 = personRepository.save(new Person("Dev2", "dev2@test.se"));
         Person dev3 = personRepository.save(new Person("Dev3", "dev3@test.se"));
+        Person dev4 = personRepository.save(new Person("Dev4","dev4@test.se"));
+        Person dev5 = personRepository.save(new Person("Dev5", "dev5@test.se"));
 
         LocalDateTime now = LocalDateTime.now();
         Todo todo1 = new Todo("Shopping", "Buy groceries", now.plusDays(1));
