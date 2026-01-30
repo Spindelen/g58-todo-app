@@ -33,7 +33,7 @@ public class DataInitializer {
         };
     }
 
-    // TODO: See if you can get a email service to work?
+    // TODO: See if you can get a email service to work? >>DONE<<
     private static void registerPerson(PersonService personService) {
         personService.createPerson(new Person("Erik", "erik@manboy.se"));
     }
