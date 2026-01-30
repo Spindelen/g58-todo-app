@@ -25,9 +25,9 @@ public class DataInitializer {
     CommandLineRunner run(PersonRepository personRepository, TodoRepository todoRepository, AttachmentRepository attachmentRepository, PersonService personService){
         return args -> {
 
-             registerPerson(personService);
+            // registerPerson(personService);
 
-//            seedingData(personRepository, todoRepository);
+            seedingData(personRepository, todoRepository);
 
 
         };
@@ -40,7 +40,7 @@ public class DataInitializer {
 
 
 
-    //TODO : Experiment with Seeding and updating data?
+    //TODO : Experiment with Seeding and updating data? >>DONE<<
     private static void seedingData(PersonRepository personRepository, TodoRepository todoRepository) throws IOException {
         Person dev1 = personRepository.save(new Person("Dev1", "dev1@test.se"));
         Person dev2 = personRepository.save(new Person("Dev2", "dev2@test.se"));
@@ -76,9 +76,11 @@ public class DataInitializer {
         todo2.setAssignedTo(dev2);
         todo3.setAssignedTo(dev2);
         todo5.setAssignedTo(dev3);
+        todo7.setAssignedTo(dev4);
+        todo8.setAssignedTo(dev5);
         // todo6 not assigned to anyone
 
-        todoRepository.saveAll(Arrays.asList(todo1, todo2, todo3, todo4, todo5, todo6));
+        todoRepository.saveAll(Arrays.asList(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8));
 
         // Since we have cascading this is not needed.
 //            attachmentRepository.saveAll(Arrays.asList(file1, file2, file3));
