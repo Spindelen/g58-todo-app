@@ -1,6 +1,7 @@
 package se.lexicon.g58todoapp.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import se.lexicon.g58todoapp.entity.Person;
 import se.lexicon.g58todoapp.entity.Todo;
 
 import java.time.LocalDateTime;
@@ -48,6 +49,8 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
 
     // 📌 Count all tasks assigned to a person
     long countByAssignedTo_Id(Long personId);
+
+    List<Todo> countTodosByAssignedTo(Person assignedTo);
     // select count(*) from todos where person_id = :personId;
 
 }
