@@ -45,6 +45,12 @@ public class Person {
         this.email = email;
     }
 
+    public Person(Long id, @NonNull String name, @NonNull String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDate.now();

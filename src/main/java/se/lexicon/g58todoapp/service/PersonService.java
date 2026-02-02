@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class PersonService {
 
-    // TODO: Expand Service Layer methods
+    // TODO: Expand Service Layer methods    >>>DONE<<<
 
     PersonRepository personRepository;
     MessageService<Email> messageService;
@@ -56,7 +56,7 @@ public class PersonService {
         return personRepository.findById(id).orElseThrow(()-> new PersonNotFoundException("Person not found"));
     }
 
-    // TODO: Update + Test?
+    // TODO: Update + Test?             >>>DONE<<<
     public Person Update(Long id, Person updated){
         Person personUpdate = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("Person not found"));
         personUpdate.setName(updated.getName());
@@ -66,13 +66,13 @@ public class PersonService {
         return personRepository.save(personUpdate);
     }
 
-    // TODO: Delete person by id + Test?
+    // TODO: Delete person by id + Test?            >>>DONE<<<
     public void deleteById(Long id){
         Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("Person not found"));
         personRepository.delete(person);
     }
 
-    // TODO: find by email + Test?
+    // TODO: find by email + Test?          >>>DONE<<<
     public Person findByEmail(String email){
         return personRepository.findByEmail(email).orElseThrow(() -> new PersonNotFoundException("Person not found"));
     }
