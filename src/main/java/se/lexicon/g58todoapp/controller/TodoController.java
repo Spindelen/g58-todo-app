@@ -1,5 +1,13 @@
 package se.lexicon.g58todoapp.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import se.lexicon.g58todoapp.entity.Todo;
+import se.lexicon.g58todoapp.repo.PersonRepository;
+import se.lexicon.g58todoapp.repo.TodoRepository;
+
+@RequestMapping("/api/todo")
+@RestController
 public class TodoController {
 
     //TODO: Implement basic CRUD operations for Todo entity
